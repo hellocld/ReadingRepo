@@ -11,6 +11,13 @@
 else
 {
     <p>Title: @book.Title</p>
+    <p>Authors:</p>
+    <ul>
+        @foreach (var author in book.AuthorGroups)
+        {
+            <li>@author.Author.FirstName @author.Author.LastName</li>
+        }
+    </ul>
 }
 
 @code {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReadingRepo.DAL.Entities;
 
@@ -10,30 +11,14 @@ using ReadingRepo.DAL.Entities;
 namespace ReadingRepo.DAL.Migrations
 {
     [DbContext(typeof(ReadingRepoContext))]
-    partial class ReadingRepoContextModelSnapshot : ModelSnapshot
+    [Migration("20230626195638_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
-
-            modelBuilder.Entity("AuthorGroupBook", b =>
-                {
-                    b.Property<Guid>("BooksId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("AuthorGroupsGroupId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("AuthorGroupsAuthorId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("BooksId", "AuthorGroupsGroupId", "AuthorGroupsAuthorId");
-
-                    b.HasIndex("AuthorGroupsGroupId", "AuthorGroupsAuthorId");
-
-                    b.ToTable("AuthorGroupBook");
-                });
 
             modelBuilder.Entity("ReadingRepo.DAL.Entities.Author", b =>
                 {
@@ -54,13 +39,13 @@ namespace ReadingRepo.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4bc7e5d0-62b4-4e2f-98cd-2bb99a13f19b"),
+                            Id = new Guid("3ee68521-9568-42ed-8c1b-278556e5710c"),
                             FirstName = "Groucho",
                             LastName = "Marx"
                         },
                         new
                         {
-                            Id = new Guid("982bb77d-8041-491c-b3f3-baef19729c79"),
+                            Id = new Guid("d07b902d-f019-4763-b3e6-a9339dd47e82"),
                             FirstName = "Harpo",
                             LastName = "Marx"
                         });
@@ -76,20 +61,18 @@ namespace ReadingRepo.DAL.Migrations
 
                     b.HasKey("GroupId", "AuthorId");
 
-                    b.HasIndex("AuthorId");
-
                     b.ToTable("AuthorGroups");
 
                     b.HasData(
                         new
                         {
-                            GroupId = new Guid("b0b463fd-a805-43da-82f6-7d30353c8e74"),
-                            AuthorId = new Guid("4bc7e5d0-62b4-4e2f-98cd-2bb99a13f19b")
+                            GroupId = new Guid("ffc04136-7407-4295-bc67-02174f07bfc5"),
+                            AuthorId = new Guid("3ee68521-9568-42ed-8c1b-278556e5710c")
                         },
                         new
                         {
-                            GroupId = new Guid("b0b463fd-a805-43da-82f6-7d30353c8e74"),
-                            AuthorId = new Guid("982bb77d-8041-491c-b3f3-baef19729c79")
+                            GroupId = new Guid("ffc04136-7407-4295-bc67-02174f07bfc5"),
+                            AuthorId = new Guid("d07b902d-f019-4763-b3e6-a9339dd47e82")
                         });
                 });
 
@@ -127,8 +110,8 @@ namespace ReadingRepo.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("72e54d7d-20a7-4a7a-8795-df77c6f48fee"),
-                            AuthorGroupId = new Guid("b0b463fd-a805-43da-82f6-7d30353c8e74"),
+                            Id = new Guid("871704e5-a8aa-43be-a449-68221ff5d9a6"),
+                            AuthorGroupId = new Guid("ffc04136-7407-4295-bc67-02174f07bfc5"),
                             Pages = 0,
                             PublishDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Hail Freedonia"
@@ -156,37 +139,6 @@ namespace ReadingRepo.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ReadingLogs");
-                });
-
-            modelBuilder.Entity("AuthorGroupBook", b =>
-                {
-                    b.HasOne("ReadingRepo.DAL.Entities.Book", null)
-                        .WithMany()
-                        .HasForeignKey("BooksId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ReadingRepo.DAL.Entities.AuthorGroup", null)
-                        .WithMany()
-                        .HasForeignKey("AuthorGroupsGroupId", "AuthorGroupsAuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ReadingRepo.DAL.Entities.AuthorGroup", b =>
-                {
-                    b.HasOne("ReadingRepo.DAL.Entities.Author", "Author")
-                        .WithMany("AuthorGroups")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-                });
-
-            modelBuilder.Entity("ReadingRepo.DAL.Entities.Author", b =>
-                {
-                    b.Navigation("AuthorGroups");
                 });
 #pragma warning restore 612, 618
         }

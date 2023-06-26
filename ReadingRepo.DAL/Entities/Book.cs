@@ -16,5 +16,7 @@ namespace ReadingRepo.DAL.Entities
         public Uri? CoverImageUri { get; set; }
         public int Pages { get; set; }
         public DateTime PublishDate { get; set; }
+
+        public ICollection<AuthorGroup>? AuthorGroups { get; }
     }
 }

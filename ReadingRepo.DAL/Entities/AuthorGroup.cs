@@ -13,5 +13,8 @@ namespace ReadingRepo.DAL.Entities
 
         public Guid GroupId { get; set; }
         public Guid AuthorId { get; set; }
+
+        public Author? Author { get; set; }
+        public ICollection<Book>? Books { get; set; }
     }
 }
