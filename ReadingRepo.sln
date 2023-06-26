@@ -4,6 +4,8 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadingRepo", "ReadingRepo\ReadingRepo.csproj", "{7FCE61FA-F6EB-4EB3-BD64-0FF563FFEC7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingRepo.DAL", "ReadingRepo.DAL\ReadingRepo.DAL.csproj", "{F57E339E-8CFF-4C45-ADA2-3964801F9669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,11 +18,16 @@ Global
 		{7FCE61FA-F6EB-4EB3-BD64-0FF563FFEC7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FCE61FA-F6EB-4EB3-BD64-0FF563FFEC7E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7FCE61FA-F6EB-4EB3-BD64-0FF563FFEC7E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F57E339E-8CFF-4C45-ADA2-3964801F9669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F57E339E-8CFF-4C45-ADA2-3964801F9669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F57E339E-8CFF-4C45-ADA2-3964801F9669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F57E339E-8CFF-4C45-ADA2-3964801F9669}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		        SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+		SolutionGuid = {CD66255F-D988-4554-AF31-D1B3A46048D8}
 	EndGlobalSection
 EndGlobal
