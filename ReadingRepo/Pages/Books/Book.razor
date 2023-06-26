@@ -1,0 +1,32 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@using ReadingRepo.DAL.Entities;
+@inject IDbContextFactory<ReadingRepoContext> DbFactory;
+
+<h3>Book</h3>
+
+@if (book == null)
+{
+    <p>No book found in DB with ID '@BookId'</p>
+}
+else
+{
+    <p>Title: @book.Title</p>
+}
+
+@code {
+    [Parameter]
+    public Guid? BookId { get; set; }
+
+    private ReadingRepo.DAL.Entities.Book book;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetBook();
+    }
+
+    private async Task GetBook()
+    {
+        using var ctx = DbFactory.CreateDbContext();
+        book = await ctx.Books.Where(x => x.Id.Equals(BookId)).FirstOrDefaultAsync();
+    }
+}
