@@ -11,11 +11,15 @@
 else
 {
     <p>Title: @book.Title</p>
+    <p>Publish Date: @book.PublishDate.Date</p>
+    <p>Pages: @book.Pages</p>
+    <p>ISBN: @(book.Isbn ?? "none")</p>
+    <p>OpenLibrary ID: @(book.OpenLibraryId ?? "none")</p>
     <p>Authors:</p>
     <ul>
-        @foreach (var author in book.AuthorGroups)
+        @foreach (var author in book.Authors)
         {
-            <li>@author.Author.FirstName @author.Author.LastName</li>
+            <li>@author.FirstName @author.LastName</li>
         }
     </ul>
 }
@@ -34,6 +38,9 @@ else
     private async Task GetBook()
     {
         using var ctx = DbFactory.CreateDbContext();
-        book = await ctx.Books.Where(x => x.Id.Equals(BookId)).FirstOrDefaultAsync();
+        book = await ctx.Books
+        .Where(x => x.BookId.Equals(BookId))
+        .Include(e => e.Authors)
+        .FirstOrDefaultAsync();
     }
 }

@@ -8,10 +8,10 @@ namespace ReadingRepo.DAL.Entities
 {
     public class Author
     {
-        public Guid Id { get; set; }
+        public Guid AuthorId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
 
-        public ICollection<AuthorGroup>? AuthorGroups { get; }
+        public ICollection<Book>? Books { get; set; }
     }
 }
