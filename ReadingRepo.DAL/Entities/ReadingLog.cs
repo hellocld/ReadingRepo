@@ -19,6 +19,7 @@ namespace ReadingRepo.DAL.Entities
 
         public Guid Id { get; set; }
         public Guid BookId { get; set; }
+        public Book Book { get; set; } = null!;
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public States State { get; set; }

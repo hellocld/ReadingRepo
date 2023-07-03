@@ -17,5 +17,6 @@ namespace ReadingRepo.DAL.Entities
         public DateTime PublishDate { get; set; }
 
         public ICollection<Author>? Authors { get; set; }
+        public ICollection<ReadingLog>? ReadingLogs { get; set; } = new List<ReadingLog>();
     }
 }

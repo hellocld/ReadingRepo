@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReadingRepo.DAL.Entities;
 
@@ -10,9 +11,11 @@ using ReadingRepo.DAL.Entities;
 namespace ReadingRepo.DAL.Migrations
 {
     [DbContext(typeof(ReadingRepoContext))]
-    partial class ReadingRepoContextModelSnapshot : ModelSnapshot
+    [Migration("20230703151543_LogManyToOneBook")]
+    partial class LogManyToOneBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.8");

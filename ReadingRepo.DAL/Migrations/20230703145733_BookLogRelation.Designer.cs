@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReadingRepo.DAL.Entities;
 
@@ -10,9 +11,11 @@ using ReadingRepo.DAL.Entities;
 namespace ReadingRepo.DAL.Migrations
 {
     [DbContext(typeof(ReadingRepoContext))]
-    partial class ReadingRepoContextModelSnapshot : ModelSnapshot
+    [Migration("20230703145733_BookLogRelation")]
+    partial class BookLogRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
@@ -136,16 +139,6 @@ namespace ReadingRepo.DAL.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("ReadingLogs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("3b253915-1e10-477c-92ab-effb0cb896b4"),
-                            BookId = new Guid("c7882c3f-98dc-4553-9835-65872cf9d3a4"),
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StartDate = new DateTime(2001, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            State = 3
-                        });
                 });
 
             modelBuilder.Entity("AuthorBook", b =>
@@ -166,17 +159,12 @@ namespace ReadingRepo.DAL.Migrations
             modelBuilder.Entity("ReadingRepo.DAL.Entities.ReadingLog", b =>
                 {
                     b.HasOne("ReadingRepo.DAL.Entities.Book", "Book")
-                        .WithMany("ReadingLogs")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Book");
-                });
-
-            modelBuilder.Entity("ReadingRepo.DAL.Entities.Book", b =>
-                {
-                    b.Navigation("ReadingLogs");
                 });
 #pragma warning restore 612, 618
         }

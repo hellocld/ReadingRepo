@@ -28,13 +28,13 @@ namespace ReadingRepo.DAL.Entities
             {
                 new Author
                 {
-                    AuthorId = Guid.NewGuid(),
+                    AuthorId = Guid.Parse("84F3F98B-82E5-445F-8E8C-DF30AFCD7CBF"),
                     FirstName = "Groucho",
                     LastName = "Marx",
                 },
                 new Author
                 {
-                    AuthorId = Guid.NewGuid(),
+                    AuthorId = Guid.Parse("F135FEC5-71B8-4BE7-8D55-7301D6F1ECAB"),
                     FirstName = "Harpo",
                     LastName = "Marx",
                 },
@@ -42,7 +42,7 @@ namespace ReadingRepo.DAL.Entities
 
             var seedBook = new Book
             {
-                BookId = Guid.NewGuid(),
+                BookId = Guid.Parse("C7882C3F-98DC-4553-9835-65872CF9D3A4"),
                 Title = "Hail Freedonia",
                 PublishDate = new DateTime(1933, 11, 17),
                 Pages = 68,
@@ -61,6 +61,14 @@ namespace ReadingRepo.DAL.Entities
                 }
             };
 
+            var seedReadingLog = new ReadingLog
+            {
+                BookId = seedBook.BookId,
+                StartDate = new DateTime(2001, 10, 01),
+                State = ReadingLog.States.READING,
+                Id = Guid.Parse("3b253915-1e10-477c-92ab-effb0cb896b4")
+            };
+
             modelBuilder.Entity<Book>()
                 .HasData(seedBook);
 
@@ -71,6 +79,9 @@ namespace ReadingRepo.DAL.Entities
             {
                 builder.HasData(seedAuthorBook);
             });
+
+            modelBuilder.Entity<ReadingLog>()
+                .HasData(seedReadingLog);
         }
     }
 }

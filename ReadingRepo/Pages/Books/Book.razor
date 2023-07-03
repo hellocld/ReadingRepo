@@ -41,6 +41,7 @@ else
         book = await ctx.Books
         .Where(x => x.BookId.Equals(BookId))
         .Include(e => e.Authors)
+        .Include(e => e.ReadingLogs)
         .FirstOrDefaultAsync();
     }
 }
