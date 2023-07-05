@@ -1,5 +1,36 @@
-﻿<h3>BookReadingLogs</h3>
+﻿@using ReadingRepo.DAL.Entities;
+
+<h4>Reading Logs</h4>
+@if(readingLogs == null || readingLogs.Count() <= 0)
+{
+    <p>You have no reading activity for this book.</p>
+}
+else
+{
+    <ul>
+        @foreach (var log in readingLogs)
+        {
+            switch (log.State)
+            {
+                case ReadingLog.States.TO_ACQUIRE:
+                    <li>This book is in your wantlist as of @log.StartDate.Date</li>
+                    break;
+                case ReadingLog.States.READ:
+                    <li>You finished reading this book on @log.EndDate.Date</li>
+                    break;
+                case ReadingLog.States.READING:
+                    <li>You started reading this book on @log.StartDate.Date</li>
+                    break;
+                case ReadingLog.States.TO_READ:
+                    <li>You want to read this book as of @log.StartDate</li>
+                    break;
+            }
+        }
+    </ul>
+}
 
 @code {
+    [Parameter]
+    public IEnumerable<ReadingLog> readingLogs { get; set; }
 
 }
