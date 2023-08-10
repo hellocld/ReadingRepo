@@ -15,12 +15,16 @@ namespace ReadingRepo.DAL.Entities
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
             DbPath = Path.Join(path, "readingrepo.db");
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options
-                .UseSqlite($"Data Source={DbPath}")
-                .EnableSensitiveDataLogging();
+        {
+            options.UseSqlite($"Data Source={DbPath}")
+                .EnableSensitiveDataLogging()
+                .EnableDetailedErrors();
+        }
+            
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

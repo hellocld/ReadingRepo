@@ -39,10 +39,17 @@ else
     private async Task GetBook()
     {
         using var ctx = DbFactory.CreateDbContext();
-        book = await ctx.Books
-        .Where(x => x.BookId.Equals(BookId))
-        .Include(e => e.Authors)
-        .Include(e => e.ReadingLogs)
-        .FirstOrDefaultAsync();
+        try
+        {
+            book = await ctx.Books
+               .Where(x => x.BookId.Equals(BookId))
+               .Include(e => e.Authors)
+               .Include(e => e.ReadingLogs)
+               .FirstOrDefaultAsync();
+        } catch (Exception e)
+        {
+            
+        }
+
     }
 }
